@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.batch</groupId>
+		<artifactId>spring-batch</artifactId>
+		<version>5.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>spring-batch-test</artifactId>
+	<name>Spring Batch Test</name>
+	<packaging>jar</packaging>
+	<description>Domain for batch job testing</description>
+	<url>https://projects.spring.io/spring-batch</url>
+	
+	<scm>
+		<url>https://github.com/spring-projects/spring-batch</url>
+		<connection>git://github.com/spring-projects/spring-batch.git</connection>
+		<developerConnection>git@github.com:spring-projects/spring-batch.git</developerConnection>
+	</scm>
+	 
+	<properties>
+		<!-- Java -->
+		<java-version>1.8</java-version>
+		<javax.inject>1</javax.inject>
+		<junit-version>4.12</junit-version>
+		
+		<!-- Spring --> 
+		<org.springframework-version>4.3.14.RELEASE</org.springframework-version>
+		<org.aspectj-version>1.8.9</org.aspectj-version>
+		
+		<!-- Web -->
+		<jsp.version>2.2.1</jsp.version>
+		<jstl.version>1.2.1</jstl.version>
+		<servlet.version>3.0.1</servlet.version>
+		
+		<!-- Logging -->
+		<log4j-version>1.2.17</log4j-version>
+		<org.slf4j-version>1.7.25</org.slf4j-version>
+		
+		<!-- Maven -->
+		<maven-eclipse-plugin-version>2.10</maven-eclipse-plugin-version>
+		<maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
+		<exec-maven-plugin-version>1.6.0</exec-maven-plugin-version>
+	</properties>
+	
+	<dependencies>
+		<!-- production dependencies -->
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+
+		<!-- optional production dependencies -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.version}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit-jupiter.version}</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- test dependencies -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>${commons-dbcp2.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	
+	<build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>${maven-eclipse-plugin-version}</version>
+                <configuration>
+                    <additionalProjectnatures>
+                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                    </additionalProjectnatures>
+                    <additionalBuildcommands>
+                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                    </additionalBuildcommands>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin-version}</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin-version}</version>
+                <configuration>
+                    <mainClass>org.springframework.batch.test.context</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
